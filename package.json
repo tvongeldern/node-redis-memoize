@@ -1,0 +1,21 @@
+{
+  "name": "node-redis-memoize",
+  "version": "1.0.0",
+  "description": "Caches the returned value of promises in the provided redis cache",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "redis",
+    "cache",
+    "memoize"
+  ],
+  "author": "Tom von Geldern",
+  "license": "ISC",
+  "dependencies": {
+    "json-stable-stringify": "^1.0.1",
+    "lodash": "^4.17.11"
+  }
+}
