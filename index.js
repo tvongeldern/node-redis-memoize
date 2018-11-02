@@ -260,7 +260,7 @@ function initialize({
 	prefetchRatio = DEFAULT_PREFETCH_RATIO,
 	startupTime = DEFAULT_CACHE_STARTUP_TIME,
 	promiseLibrary = DEFAULT_PROMISE_LIBRARY,
-}) {
+} = {}) {
 	if (!redis) {
 		throw new Error('No redis object provided to setCache');
 	}
