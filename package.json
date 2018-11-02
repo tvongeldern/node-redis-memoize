@@ -10,12 +10,16 @@
     "node",
     "redis",
     "cache",
-    "memoize"
+    "memoize",
+    "promise",
+    "speed",
+    "performance"
   ],
   "author": "Tom von Geldern",
   "license": "ISC",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.11"
-  }
+  },
+  "repository": "tvongeldern/redis-json-memoize"
 }
