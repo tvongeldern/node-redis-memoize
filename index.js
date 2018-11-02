@@ -249,8 +249,12 @@ function memoize(thenableFunction, { redis = redisObject, ttl = redisTtl } = {})
 }
 
 
-function clearCache() {
-
+function clearCache(locator = null, redis = redisObject) {
+	const glob = locator ? '*' + locator + '*' : '*';
+	return redis.keys(glob)
+		.then((keys) => {
+			keys.forEach(key => deleteFromRedis({ redis, key }));
+		});
 }
 
 function initialize({
