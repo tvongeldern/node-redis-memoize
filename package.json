@@ -16,7 +16,7 @@
     "performance"
   ],
   "author": "Tom von Geldern",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.11"
