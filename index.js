@@ -107,14 +107,16 @@ function clearPrefetchTimeout(key) {
 
 // Sets a timeout to mark a cache key's data as stale,
 // ie sets an appoinment to make a cache entry as "stale".
-function setPrefetchTimeout(key, ttl) {
+function setPrefetchTimeout({ redis, key, ttl }) {
 	const prefetchTimeout = ttl * redisPrefetchRatio * 1000;
 	// If there is already an appoinment to mark the data stale,
 	// this method cancels that appointment and move it forward
 	if (prefetchTimeouts[key]) {
 		clearPrefetchTimeout(key);
 	}
-	prefetchTimeouts[key] = setTimeout(() => markDataStale(key), prefetchTimeout);
+	prefetchTimeouts[key] = setTimeout(() => {
+		markDataStale({ redis, key });
+	}, prefetchTimeout);
 }
 
 // Writes data to a cache key
@@ -129,7 +131,7 @@ function writeToRedis({ redis, key, data, ttl }) {
 	// Set "appointment" to mark this data stale
 	if (ttl) {
 		return redis.set(key, cacheData, 'ex', ttl)
-			.then(() => setPrefetchTimeout(key, ttl));
+			.then(() => setPrefetchTimeout({ redis, key, ttl }));
 	}
 	// Sets the TTL for the cache key, IE when it is to be entirely scrubbed from Redis
 	return redis.ttl(key) // cache.set will remove item's TTL if one is not specified
